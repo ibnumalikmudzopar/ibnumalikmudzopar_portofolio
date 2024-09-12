@@ -11,7 +11,7 @@ class AboutPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            'Halo, saya [Nama Kamu]. Saya adalah pengembang Flutter yang berfokus pada pembuatan aplikasi mobile dan web. Portofolio ini adalah contoh karya saya.',
+            'Halo, saya Ibnu Malik Mudzopar. Saya adalah pengembang Flutter yang berfokus pada pembuatan aplikasi mobile dan web. Portofolio ini adalah contoh karya saya.',
             style: TextStyle(fontSize: 18),
             textAlign: TextAlign.center,
           ),
