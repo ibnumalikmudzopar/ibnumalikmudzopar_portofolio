@@ -5,7 +5,7 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('About Me'),
+        title: Text('About Me\nIbnu Malik Mudzopar'),
       ),
       body: Center(
         child: Padding(
