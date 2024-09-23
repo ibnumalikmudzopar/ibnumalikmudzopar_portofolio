@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Portofolio Flutter',
+      title: 'My Portofolio',
       initialRoute: '/',
       getPages: AppPages.routes,
     );
