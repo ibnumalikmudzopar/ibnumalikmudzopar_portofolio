@@ -6,6 +6,7 @@ import 'package:ibnumalikmudzopar_portofolio/page/service_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final Uri _url = Uri.parse('https://www.komperinolabs.web.app');
+final Uri _url2 = Uri.parse('https://github.com/ibnumalikmudzopar');
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -31,6 +32,11 @@ class HomePage extends StatelessWidget {
       throw Exception('Could not launch $_url');
     }
   }
+  Future<void> _launchURL2() async {
+    if (!await launchUrl(_url2)) {
+      throw Exception('Could not launch $_url2');
+    }
+  }
 
   void _scrollToServiceSection() {
     // Menggunakan Scrollable.ensureVisible untuk scroll ke bagian Service
@@ -53,7 +59,7 @@ class HomePage extends StatelessWidget {
             pinned: false,
             backgroundColor: Colors.black,
             flexibleSpace: FlexibleSpaceBar(
-              title: Row(
+              title: const Row(
                 children: const [
                   Icon(Icons.keyboard, color: Colors.white),
                   SizedBox(width: 8),
@@ -74,7 +80,7 @@ class HomePage extends StatelessWidget {
             actions: <Widget>[
               _buildButton('Service', _scrollToServiceSection), // Scroll ke bagian service
               _buildButton('Blog', _launchURL),
-              _buildButton('Work', () => Get.to(WorkPage())),
+              _buildButton('Work', _launchURL2),
               _buildButton('Contact', () => Get.to(AboutPage())),
               SizedBox(width: 50,),
             ],
@@ -90,7 +96,7 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 110), //diatas text im tryng
+                        const SizedBox(height: 130), //diatas text im tryng
                         const Text(
                           "I'm trying to manage\nmyself, on just\nportfolio.",
                           style: TextStyle(
@@ -101,7 +107,7 @@ class HomePage extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          "Hello I'm Iben, Software Developer\nso anyone who needs to create an apps\nquickly send message",
+                          "Hello I'm Iben, Flutter Developer\nso anyone who needs to create an apps\nquickly send message",
                           style: TextStyle(
                             color: Colors.grey[400],
                             fontSize: 16,
@@ -109,8 +115,25 @@ class HomePage extends StatelessWidget {
                         ),
                         const SizedBox(height: 32),
                         OutlinedButton.icon(
-                          onPressed: () {
-                            // Aksi untuk email
+                          onPressed: () async {
+                            const email = 'ibnumalikmudzopar@gmail.com';
+                            const subject = '';
+                            const body = '';
+                            final Uri emailUri = Uri(
+                              scheme: 'mailto',
+                              path: email,
+                              queryParameters: {
+                                'subject': subject,
+                                'body': body,
+                              },
+                            );
+
+                            if (await canLaunchUrl(emailUri)) {
+                              await launchUrl(emailUri);
+                            } else {
+                              // Jika tidak bisa membuka aplikasi email
+                              throw 'Could not launch $emailUri';
+                            }
                           },
                           icon: const Icon(Icons.arrow_forward, color: Colors.white),
                           label: const Text("Send Email", style: TextStyle(color: Colors.white)),
@@ -122,6 +145,7 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                         ),
+
                         const SizedBox(height: 32),
                       ],
                     ),
